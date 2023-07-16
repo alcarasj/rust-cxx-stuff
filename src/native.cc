@@ -1,7 +1,5 @@
 #include "rust-cxx-stuff/src/native.h"
 
-BlobstoreClient::BlobstoreClient() {}
-
-std::unique_ptr<BlobstoreClient> new_blobstore_client() {
-  return std::unique_ptr<BlobstoreClient>(new BlobstoreClient());
+rust::String say_hello_native() {
+  return std::string("Hello FII!");
 }

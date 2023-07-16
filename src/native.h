@@ -1,9 +1,4 @@
 #pragma once
-#include <memory>
+#include "rust/cxx.h"
 
-class BlobstoreClient {
-public:
-  BlobstoreClient();
-};
-
-std::unique_ptr<BlobstoreClient> new_blobstore_client();
+rust::String say_hello_native();

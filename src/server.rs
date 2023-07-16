@@ -17,9 +17,10 @@ impl Greeter for MyGreeter {
         request: Request<HelloRequest>,
     ) -> Result<Response<HelloReply>, Status> {
         println!("Got a request: {:?}", request);
+        let greeting: String = ffi::say_hello_native();
 
         let reply = hello_world::HelloReply {
-            message: format!("Hello {}!", request.into_inner().name).into(),
+            message: greeting.into(),
         };
 
         Ok(Response::new(reply))
@@ -31,9 +32,7 @@ mod ffi {
     unsafe extern "C++" {
         include!("rust-cxx-stuff/src/native.h");
 
-        type BlobstoreClient;
-
-        fn new_blobstore_client() -> UniquePtr<BlobstoreClient>;
+        fn say_hello_native() -> String;
     }
 }
 
@@ -41,7 +40,6 @@ mod ffi {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = "[::1]:50051".parse()?;
     let greeter = MyGreeter::default();
-    let _client = ffi::new_blobstore_client();
 
     Server::builder()
         .add_service(GreeterServer::new(greeter))
