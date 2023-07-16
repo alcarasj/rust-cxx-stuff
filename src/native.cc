@@ -1,4 +1,4 @@
-#include "rust-cx-stuff/include/blobstore.h"
+#include "rust-cxx-stuff/src/native.h"
 
 BlobstoreClient::BlobstoreClient() {}
 

@@ -1,7 +1,7 @@
 #[cxx::bridge]
 mod ffi {
     unsafe extern "C++" {
-        include!("rust-cxx-stuff/include/blobstore.h");
+        include!("rust-cxx-stuff/src/native.h");
 
         type BlobstoreClient;
 
@@ -10,5 +10,5 @@ mod ffi {
 }
 
 fn main() {
-    let client = ffi::new_blobstore_client();
+    let _client = ffi::new_blobstore_client();
 }

@@ -1,5 +1,5 @@
 fn main() {
     cxx_build::bridge("src/main.rs")
-        .file("src/blobstore.cc")
+        .file("src/native.cc")
         .compile("rust-cxx-stuff");
 }
