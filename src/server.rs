@@ -17,7 +17,7 @@ impl Greeter for MyGreeter {
         request: Request<HelloRequest>,
     ) -> Result<Response<HelloReply>, Status> {
         println!("Got a request: {:?}", request);
-        let greeting: String = ffi::say_hello_native();
+        let greeting: String = ffi::say_hello_native(request.into_inner().name);
 
         let reply = hello_world::HelloReply {
             message: greeting.into(),
@@ -32,7 +32,7 @@ mod ffi {
     unsafe extern "C++" {
         include!("rust-cxx-stuff/src/native.h");
 
-        fn say_hello_native() -> String;
+        fn say_hello_native(name: String) -> String;
     }
 }
 
