@@ -1,2 +1,2 @@
 # rust-cxx-stuff
-Exploring Rust and C++ interoperability using CXX.
+Exploring Rust and C++ interoperability using [CXX](https://cxx.rs/).
